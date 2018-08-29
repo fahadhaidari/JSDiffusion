@@ -13,9 +13,7 @@ window.onload = function() {
   let count = 0;
 
   const frame = function() {
-    if (quads.length) {
-      animate();
-    }
+    if (quads.length) animate();
     requestAnimationFrame(frame);
   }
 
@@ -23,8 +21,8 @@ window.onload = function() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    for (var i = 0; i < gridWidth; i++) {
-      for (var j = 0; j < gridHeight; j++) {
+    for (let i = 0; i < gridWidth; i++) {
+      for (let j = 0; j < gridHeight; j++) {
         var quad = new Quad(200 + i * (size + 5), 150 + j * (size + 5), size, size);
         quads.push(quad);
       }
@@ -47,18 +45,18 @@ window.onload = function() {
     }
 
     for (var i = 0; i < quads.length; i++) {
-        const activeParticle = quads[i];
-        const dx = activeParticle.x - target.x;
-        const dy = activeParticle.y - target.y;
+        const quad = quads[i];
+        const dx = quad.x - target.x;
+        const dy = quad.y - target.y;
         const radius = 40;
         const angle = Math.atan2(dy, dx);
         const distance = Math.sqrt(dx * dx + dy * dy);
         const xVel = Math.cos(angle) * (10 / distance) * radius;
         const yVel = Math.sin(angle) * (10 / distance) * radius;
 
-        activeParticle.x += xVel;
-        activeParticle.y += yVel;
-        activeParticle.draw();
+        quad.x += xVel;
+        quad.y += yVel;
+        quad.draw();
     }
   }
 
