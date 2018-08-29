@@ -9,7 +9,6 @@ window.onload = function() {
     x: 0,
     y: 0
   };
-  const grid = [];
   const colors = ["red", "cyan", "teal", "maroon"];
   let count = 0;
 
@@ -24,11 +23,9 @@ window.onload = function() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    for (var i = 0; i < 60; i++) {
-      grid[i] = [];
-      for (var j = 0; j < 60; j++) {
+    for (var i = 0; i < gridWidth; i++) {
+      for (var j = 0; j < gridHeight; j++) {
         var quad = new Quad(200 + i * (size + 5), 150 + j * (size + 5), size, size);
-        grid[i][j] = quad;
         quads.push(quad);
       }
     }
@@ -36,8 +33,8 @@ window.onload = function() {
   }
 
   const randomize = function() {
-    target.x = Math.random() * grid[gridWidth - 1][0].x;
-    target.y = Math.random() * grid[0][gridHeight - 1].y;
+    target.x = Math.random() * (gridWidth * (size + 5)) + 200;
+    target.y = Math.random() * (gridHeight * (size + 5)) + 150;
   }
 
   const animate = function() {
@@ -49,21 +46,19 @@ window.onload = function() {
       randomize();
     }
 
-    for (var i = 0; i < grid.length; i++) {
-      for (var j = 0; j < grid[i].length; j++) {
-        const activeGrid = grid[i][j];
-        const dx = activeGrid.x - target.x;
-        const dy = activeGrid.y - target.y;
+    for (var i = 0; i < quads.length; i++) {
+        const activeParticle = quads[i];
+        const dx = activeParticle.x - target.x;
+        const dy = activeParticle.y - target.y;
         const radius = 40;
         const angle = Math.atan2(dy, dx);
         const distance = Math.sqrt(dx * dx + dy * dy);
         const xVel = Math.cos(angle) * (10 / distance) * radius;
         const yVel = Math.sin(angle) * (10 / distance) * radius;
 
-        activeGrid.x += xVel;
-        activeGrid.y += yVel;
-        activeGrid.draw();
-      }
+        activeParticle.x += xVel;
+        activeParticle.y += yVel;
+        activeParticle.draw();
     }
   }
 
