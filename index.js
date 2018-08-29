@@ -9,6 +9,10 @@ window.onload = function() {
     x: 0,
     y: 0
   };
+  const startPos = {
+    x: 200,
+    y: 150
+  }
   const colors = ["red", "cyan", "teal", "maroon"];
   let count = 0;
 
@@ -23,7 +27,7 @@ window.onload = function() {
 
     for (let i = 0; i < gridWidth; i++) {
       for (let j = 0; j < gridHeight; j++) {
-        let quad = new Quad(200 + i * (size + 5), 150 + j * (size + 5), size, size);
+        let quad = new Quad(startPos.x + i * (size + 5), startPos.y + j * (size + 5), size, size);
         quads.push(quad);
       }
     }
@@ -31,8 +35,8 @@ window.onload = function() {
   }
 
   const randomize = function() {
-    target.x = Math.random() * (gridWidth * (size + 5)) + 200;
-    target.y = Math.random() * (gridHeight * (size + 5)) + 150;
+    target.x = Math.random() * (gridWidth * (size + 5)) + startPos.x;
+    target.y = Math.random() * (gridHeight * (size + 5)) + startPos.y;
   }
 
   const animate = function() {
