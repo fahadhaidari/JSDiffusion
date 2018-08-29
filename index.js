@@ -12,16 +12,15 @@ window.onload = function() {
   const grid = [];
   const colors = ["red", "cyan", "teal", "maroon"];
   let count = 0;
-  init();
 
-  function frame() {
+  const frame = function() {
     if (quads.length) {
       animate();
     }
     requestAnimationFrame(frame);
   }
 
-  function init() {
+  const init = function() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
@@ -36,12 +35,12 @@ window.onload = function() {
     randomize();
   }
 
-  function randomize() {
+  const randomize = function() {
     target.x = Math.random() * grid[gridWidth - 1][0].x;
     target.y = Math.random() * grid[0][gridHeight - 1].y;
   }
 
-  function animate() {
+  const animate = function() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     count ++;
 
@@ -90,4 +89,6 @@ window.onload = function() {
   }
 
   requestAnimationFrame(frame);
+
+  init();
 }
