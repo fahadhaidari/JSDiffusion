@@ -23,7 +23,7 @@ window.onload = function() {
 
     for (let i = 0; i < gridWidth; i++) {
       for (let j = 0; j < gridHeight; j++) {
-        var quad = new Quad(200 + i * (size + 5), 150 + j * (size + 5), size, size);
+        let quad = new Quad(200 + i * (size + 5), 150 + j * (size + 5), size, size);
         quads.push(quad);
       }
     }
@@ -44,7 +44,7 @@ window.onload = function() {
       randomize();
     }
 
-    for (var i = 0; i < quads.length; i++) {
+    for (let i = 0; i < quads.length; i++) {
         const quad = quads[i];
         const dx = quad.x - target.x;
         const dy = quad.y - target.y;
