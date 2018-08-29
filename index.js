@@ -58,9 +58,7 @@ window.onload = function() {
         const xVel = Math.cos(angle) * (10 / distance) * radius;
         const yVel = Math.sin(angle) * (10 / distance) * radius;
 
-        quad.x += xVel;
-        quad.y += yVel;
-        quad.draw();
+        quad.draw(xVel, yVel);
     }
   }
 
@@ -76,9 +74,11 @@ window.onload = function() {
       context.stroke();
     }
 
-    this.draw = function() {
+    this.draw = function(xVel, yVel) {
       const factor = (canvas.height - this.y) * 0.008;
       context.fillStyle = color;
+      this.x += xVel;
+      this.y += yVel;
       context.fillRect(this.x, this.y, width * factor, height * factor);
     }
 
